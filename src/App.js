@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+// import TaskForm from './components/taskForm/TaskForm';
+import TaskForm2 from './components/taskForm/TaskForm2';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
+          <span className="App-logo">To</span>
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <span className="App-logo">Do</span>
+          <img src={logo} className="App-logo" alt="logo" />
+          <span className="App-logo">List</span>
         </header>
+        <div className="content">
+          {/* <TaskForm /> */}
+          <TaskForm2 />
+        </div>
       </div>
     );
   }
