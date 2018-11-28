@@ -18,8 +18,7 @@ export default class TaskForm extends Component {
                 id: this.state.tasks.length + 1,
                 completed: false
             }
-            this.setState( {tasks: [...this.state.tasks, task], input: ""})
-            this.setState({showMemo: false})
+            this.setState( {tasks: [...this.state.tasks, task], input: "", showMemo: false})
         } else {this.setState({showMemo: true})}
     }
 
@@ -42,3 +41,4 @@ export default class TaskForm extends Component {
     )
   }
 }
+

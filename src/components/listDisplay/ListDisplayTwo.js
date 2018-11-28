@@ -1,15 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { updateTask } from '../../ducks/reducer';
 
-export default class ListDisplay extends Component {
-    constructor() {
-        super();
+class ListDisplayTwo extends Component {
+    constructor(props) {
+        super(props);
         this.state ={
             complete: false,
         }
     }
-
+    
     completeTask = () => {
         this.setState({ complete: true })
+        console.log('this.props---------->', this.props)
+    }
+
+    deleteTask = (id) => {
+        const arr = this.props.tasks
+        arr.splice(arr.findIndex(item => item.id === id), 1)
+        this.props.updateTask({tasks: arr})
     }
     
     render() {
@@ -31,3 +40,12 @@ export default class ListDisplay extends Component {
     }
 }
 
+function mapStateToProps(state) {
+    const { tasks } = state
+  
+    return {
+      tasks: tasks
+    }
+  }
+  
+  export default connect(mapStateToProps, {updateTask})( ListDisplayTwo )

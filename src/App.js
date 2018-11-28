@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 // import TaskForm from './components/taskForm/TaskForm';
-import TaskForm2 from './components/taskForm/TaskForm2';
+// import TaskForm2 from './components/taskForm/TaskForm2';
+import TaskForm3 from './components/taskForm/TaskForm3';
 
 class App extends Component {
   render() {
@@ -17,7 +18,8 @@ class App extends Component {
         </header>
         <div className="content">
           {/* <TaskForm /> */}
-          <TaskForm2 />
+          {/* <TaskForm2 /> */}
+          <TaskForm3 />
         </div>
       </div>
     );
