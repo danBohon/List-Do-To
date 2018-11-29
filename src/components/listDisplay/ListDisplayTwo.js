@@ -6,35 +6,38 @@ class ListDisplayTwo extends Component {
     constructor(props) {
         super(props);
         this.state ={
-            complete: false,
+            render: false
         }
     }
     
-    completeTask = () => {
-        this.setState({ complete: true })
-        console.log('this.props---------->', this.props)
+    completeTask = (id) => {
+        const arr = this.props.tasks
+        arr[arr.findIndex(item => item.id === id)].completed = !arr[arr.findIndex(item => item.id === id)].completed
+        this.props.updateTask(arr);
+        this.setState({render: !this.state.render})
     }
 
     deleteTask = (id) => {
         const arr = this.props.tasks
         arr.splice(arr.findIndex(item => item.id === id), 1)
-        this.props.updateTask({tasks: arr})
+        this.props.updateTask(arr);
+        this.setState({render: !this.state.render})
     }
     
     render() {
-        const { tasks } = this.props;
-        const list = tasks.map(item => {
-            return(
-                <div className="task" key={item.id}>
-                    <span className={this.state.complete ? "complete" : ""}>{item.title}</span>
-                    <button onClick={this.completeTask}>Complete</button>
-                    <span className="delete" onClick={() => this.props.deleteTask(item.id)}>X</span>
-                </div>
-            )}
-        )
+        // const { tasks } = this.props;
+        // const list = tasks.map(item => {
+        //     return(
+        //         <div className="task" key={item.id}>
+        //             <span className={item.completed ? "complete" : ""}>{item.title}</span>
+        //             <button onClick={() => this.completeTask(item.id)}>Complete</button>
+        //             <span className="delete" onClick={() => this.deleteTask(item.id)}>X</span>
+        //         </div>
+        //     )}
+        // )
       return (
         <div>
-          {list}
+          {/* {list} */}
         </div>
       )
     }

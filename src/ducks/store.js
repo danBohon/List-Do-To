@@ -1,4 +1,12 @@
-import { createStore } from "redux";
-import reducer from "./reducer";
+import { createStore, applyMiddleware, combineReducers } from "redux";
+import taskReducer from "./reducer";
+import reduxPromiseMiddleware from 'redux-promise-middleware';
 
-export default createStore( reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const reducer = combineReducers({
+    task: taskReducer
+})
+
+export default createStore( 
+    reducer,
+    applyMiddleware(reduxPromiseMiddleware())
+);

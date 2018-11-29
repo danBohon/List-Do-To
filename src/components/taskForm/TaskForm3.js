@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ListDisplayTwo from '../listDisplay/ListDisplay';
+import ListDisplayTwo from '../listDisplay/ListDisplayTwo';
 import { connect } from "react-redux";
 import { updateTask } from '../../ducks/reducer'
 
@@ -24,12 +24,6 @@ class TaskForm3 extends Component {
             this.setState( {input: "", showMemo: false} )
         } else {this.setState({showMemo: true})}
     }
-
-    deleteTask = (id) => {
-        const arr = this.state.tasks
-        arr.splice(arr.findIndex(item => item.id === id), 1)
-        this.setState({tasks: arr})
-    }
     
     render() {
         // console.log('this.props---------->', this.props)
@@ -39,8 +33,7 @@ class TaskForm3 extends Component {
         {this.state.showMemo ? <p style={{color: 'red'}}>Please add a title</p> : <p></p>}
         <input type="text" value={this.state.input} onChange={e => this.setState({input: e.target.value})}/>
         <button onClick={this.createTask2}>Create Task</button>
-        <ListDisplayTwo tasks={this.props.tasks}
-                    deleteTask={this.deleteTask}/>
+        <ListDisplayTwo/>
       </div>
     )
   }
