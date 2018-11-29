@@ -17,3 +17,7 @@ export const deleteTask = function(id) {
         return res.data
     })
 } 
+
+export const completeTask = function (id) {
+    return axios.put(`https://practiceapi.devmountain.com/api/tasks/${id}`).then((res) => res.data)
+}

@@ -18,6 +18,10 @@ const DELETE_TASK = "DELETE_TASK";
 const DELETE_TASK_PENDING = "DELETE_TASK_PENDING";
 const DELETE_TASK_FULFILLED = "DELETE_TASK_FULFILLED";
 
+const COMPLETE_TASK = "COMPLETE_TASK";
+const COMPLETE_TASK_PENDING = "COMPLETE_TASK_PENDING";
+const COMPLETE_TASK_FULFILLED = "COMPLETE_TASK_FULFILLED";
+
 export default function taskReducer(state = initialState, action) {
     console.log('REDUCER HIT: ACTION --->', action );
 
@@ -41,7 +45,11 @@ export default function taskReducer(state = initialState, action) {
         case DELETE_TASK_FULFILLED: 
             return { state, loading: false, tasks: action.payload};
         
-    
+        case COMPLETE_TASK_PENDING:
+            return { state, loading: true, tasks: state.tasks};
+        case COMPLETE_TASK_FULFILLED: 
+            return { state, loading: false, tasks: action.payload};
+        
         default:
             return state;
     }
@@ -73,5 +81,12 @@ export function deleteTask(id) {
     return {
         type: DELETE_TASK,
         payload: taskServices.deleteTask(id)
+    }
+}
+
+export function completeTask(id) {
+    return {
+        type: COMPLETE_TASK,
+        payload: taskServices.completeTask(id)
     }
 }

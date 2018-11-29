@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-// import TaskForm from './components/taskForm/TaskForm';
-// import TaskForm2 from './components/taskForm/TaskForm2';
 import TaskForm3 from './components/taskForm/TaskForm3';
+import routes from './routes';
 
 class App extends Component {
   render() {
@@ -17,9 +16,7 @@ class App extends Component {
           <span className="App-logo">List</span>
         </header>
         <div className="content">
-          {/* <TaskForm /> */}
-          {/* <TaskForm2 /> */}
-          <TaskForm3 />
+          {routes}
         </div>
       </div>
     );
