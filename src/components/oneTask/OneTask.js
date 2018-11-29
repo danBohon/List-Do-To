@@ -13,7 +13,7 @@ class OneTask extends Component {
     return (
       <div>
         {task.title ? <h1>{task.title}</h1> : <h1></h1>}
-        {/* <h2>{task.description}</h2> */}
+        <h2>{task.description}</h2>
       </div>
     )
   }
