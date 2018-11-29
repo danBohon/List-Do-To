@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { updateTask } from '../../ducks/reducer';
+import { getTasks, deleteTask } from '../../ducks/reducer';
 
 class ListDisplayTwo extends Component {
     constructor(props) {
@@ -8,6 +8,10 @@ class ListDisplayTwo extends Component {
         this.state ={
             render: false
         }
+    }
+
+    componentDidMount() {
+        this.props.getTasks();
     }
     
     completeTask = (id) => {
@@ -18,37 +22,41 @@ class ListDisplayTwo extends Component {
     }
 
     deleteTask = (id) => {
-        const arr = this.props.tasks
-        arr.splice(arr.findIndex(item => item.id === id), 1)
-        this.props.updateTask(arr);
-        this.setState({render: !this.state.render})
+        // const arr = this.props.tasks
+        // arr.splice(arr.findIndex(item => item.id === id), 1)
+        // this.props.updateTask(arr);
+        // this.setState({render: !this.state.render})
+        this.props.deleteTask(id);
     }
     
     render() {
-        // const { tasks } = this.props;
-        // const list = tasks.map(item => {
-        //     return(
-        //         <div className="task" key={item.id}>
-        //             <span className={item.completed ? "complete" : ""}>{item.title}</span>
-        //             <button onClick={() => this.completeTask(item.id)}>Complete</button>
-        //             <span className="delete" onClick={() => this.deleteTask(item.id)}>X</span>
-        //         </div>
-        //     )}
-        // )
+        console.log('this.props---------->', this.props)
+        const { tasks } = this.props;
+        const list = tasks.map(item => {
+            return(
+                <div className="task" key={item.id}>
+                    <h3 className={item.completed ? "complete" : ""}>{item.title}</h3>
+                    <p>{item.description}</p>
+                    <button onClick={() => this.completeTask(item.id)}>Complete</button>
+                    <span className="delete" onClick={() => this.deleteTask(item.id)}>X</span>
+                </div>
+            )}
+        )
       return (
         <div>
-          {/* {list} */}
+          {list}
         </div>
       )
     }
 }
 
 function mapStateToProps(state) {
-    const { tasks } = state
+    const { tasks, loading } = state.task
   
     return {
-      tasks: tasks
+        tasks,
+        loading
     }
   }
   
-  export default connect(mapStateToProps, {updateTask})( ListDisplayTwo )
+  export default connect(mapStateToProps, {getTasks, deleteTask})( ListDisplayTwo )
